@@ -8,7 +8,7 @@ sudo mount -t nfs 192.168.0.2:/data/git /opt/git
 # instances nfs share
 
 # sshkey
-#ssh-keygen -N “” -f ~/.ssh/id_rsa
+#ssh-keygen -N "" -f ~/.ssh/id_rsa
 #ssh-copy-id
 #ssh-keyscan -H 192.168.2.68 >> ~/.ssh/known_hosts
 # libvirt config
