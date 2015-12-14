@@ -9,11 +9,11 @@ CTRL_IP=`ifconfig eth0| awk '/inet addr/{print substr($2,6)}'`
 # linux-ftp.bj.intel.com/pub/mirrors
 LOCAL_APT_SRC=shtaurus.sh.intel.com
 
-# Two available pypi mirror, you must modify LOCAL_PYPI and PYPI_TRUSTED_HOST together
+# Two available pypi mirror, you must modify LOCAL_PYPI and PYPI_HOST together
 # shtaurus.sh.intel.com/pypi/simple
 # linux-ftp.jf.intel.com/pub/mirrors/pypi/web/simple
 LOCAL_PYPI=shtaurus.sh.intel.com/pypi/simple
-PYPI_TRUSTED_HOST=shtaurus.sh.intel.com
+PYPI_HOST=shtaurus.sh.intel.com
 
 # Available intel proxies
 # 10.240.252.16 - proxy-prc

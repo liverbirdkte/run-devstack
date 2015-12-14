@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # install and config redsocks
-sudo apt install redsocks
+sudo apt install -y redsocks
 
 sudo -E tee /etc/redsocks.conf >/dev/null << EOF
 base {
@@ -17,14 +17,14 @@ redsocks {
         local_ip = 127.0.0.1;
         local_port = 6666;
         // ip = 10.239.4.80 child-prc;
-        ip = 10.240.252.16;
+        ip = $INTEL_PROXY;
         port = 1080;
         type = socks5;
 }
 redudp {
         local_ip = 127.0.0.1;
         local_port = 8888;
-        ip = 10.240.252.16;
+        ip = $INTEL_PROXY;
         port = 1080;
         udp_timeout = 30;
         udp_timeout_stream = 180;
