@@ -7,6 +7,8 @@ cat > local.conf << EOF
 [[local|localrc]]
 NOVNC_REPO=/opt/git/kanaka/noVNC.git
 GIT_BASE=/opt/git
+IMAGE_URLS=file:///opt/git/images/cirros-0.3.4-x86_64-uec.tar.gz
+DOWNLOAD_DEFAULT_IMAGES=False
 
 HOST_IP=$MY_IP
 SERVICE_HOST=$MY_IP
