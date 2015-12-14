@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -x
 MY_IP=`ifconfig eth0| awk '/inet addr/{print substr($2,6)}'`
 # Generate the local.conf file
 if [ $MY_IP == $CTRL_IP ]; then

@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -x
 # mount the nfs directory as git_base
 sudo apt install -y nfs-common git
 sudo mkdir /opt/git

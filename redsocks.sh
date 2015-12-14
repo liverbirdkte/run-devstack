@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -x
 # install and config redsocks
 sudo apt install -y redsocks
 

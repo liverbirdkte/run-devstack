@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -x
 # Clone the latest devstack
 cd ~
 git clone /opt/git/openstack-dev/devstack.git

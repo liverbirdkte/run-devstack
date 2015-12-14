@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -x
 # replace pypi local mirror
 PIP_CONF=/home/ubuntu/.pip
 mkdir $PIP_CONF
