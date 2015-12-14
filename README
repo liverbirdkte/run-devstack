@@ -1,0 +1,21 @@
+This script is designed to quickly start a devstack environment from inside
+intel network.
+
+Steps:
+1). Setting up environments (Optional)
+environment.inc variable and default setting is as below:
+# CTRL_IP, The controller's IP for multiple nodes.
+# Default value is All In One setup
+CTRL_IP=`ifconfig eth0| awk '/inet addr/{print substr($2,6)}'`
+
+# apt source mirror
+LOCAL_APT_SRC=shtaurus.sh.intel.com
+
+# pypi mirror
+LOCAL_PYPI=shtaurus.sh.intel.com/pypi/simple
+PYPI_HOST=shtaurus.sh.intel.com
+
+#Intel proxies
+INTEL_PROXY=10.240.252.16
+
+2). run init.sh
