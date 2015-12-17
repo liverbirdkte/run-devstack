@@ -2,6 +2,7 @@
 
 # CHANGE THE CTRL_IP, otherwise by default install AIO devstack
 # The controller's IP
+#export CTRL_IP=192.168.2.93
 export CTRL_IP=`ifconfig eth0| awk '/inet addr/{print substr($2,6)}'`
 
 # Two available apt source mirror
