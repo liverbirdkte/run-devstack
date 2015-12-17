@@ -19,7 +19,7 @@ else
     sudo mount -t nfs $CTRL_IP:$NFS_PATH $NFS_PATH
     grep $NFS_PATH /etc/fstab
     if [ $? -ne 0 ]
-    echo "$CTRL_IP:$NFS_PATH $NFS_PATH  nfs defaults 0 0" | sudo -E tee -a /etc/fstab
+    then echo "$CTRL_IP:$NFS_PATH $NFS_PATH  nfs defaults 0 0" | sudo -E tee -a /etc/fstab
     fi
 fi
 
