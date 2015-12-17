@@ -10,4 +10,6 @@ cd ~/devstack
 # generate local.conf
 $OLD_DIR/gen-localconf.sh
 
+mkdir files
+cp /opt/git/images/get-pip.py files/
 ./stack.sh
