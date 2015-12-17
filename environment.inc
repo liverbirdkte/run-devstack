@@ -12,6 +12,7 @@ export LOCAL_APT_SRC=shtaurus.sh.intel.com
 # Two available pypi mirror, you must modify LOCAL_PYPI and PYPI_HOST together
 # shtaurus.sh.intel.com/pypi/simple
 # linux-ftp.jf.intel.com/pub/mirrors/pypi/web/simple
+# pypi.ir.intel.com/simple
 export LOCAL_PYPI=shtaurus.sh.intel.com/pypi/simple
 export PYPI_HOST=shtaurus.sh.intel.com
 
