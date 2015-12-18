@@ -10,7 +10,7 @@ fi
 # instances nfs share
 MY_IP=`ifconfig eth0| awk '/inet addr/{print substr($2,6)}'`
 # Generate the local.conf file
-NFS_PATH=/opt/stack/data/nova
+NFS_PATH=/opt/stack/data/nova/instances
 if [ $MY_IP == $CTRL_IP ]
 then
     sudo apt install -y nfs-kernel-server
@@ -36,8 +36,8 @@ fi
 cp id_rsa.lm ~/.ssh/id_rsa
 chmod 600 ~/.ssh/id_rsa
 cat id_rsa.lm.pub >> ~/.ssh/authorized_keys
-echo "    StrictHostKeyChecking no" |sudo -E tee -a /etc/ssh/ssh_config
-echo "    UserKnownHostsFile=/dev/null" |sudo -E tee -a /etc/ssh/ssh_config
+# echo "    StrictHostKeyChecking no" |sudo -E tee -a /etc/ssh/ssh_config
+# echo "    UserKnownHostsFile=/dev/null" |sudo -E tee -a /etc/ssh/ssh_config
 
 # libvirt config
 sudo sed -i "s|libvirtd_opts=\"-d\"|libvirtd_opts=\"-l -d\"|" /etc/default/libvirt-bin
