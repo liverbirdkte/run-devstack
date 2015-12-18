@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if [ $LM_ENABLED != "True" ]
+then
+echo "Live Migration not enabled\n"
+exit 0
+fi
+# Run this script after devstack is installed
 # Prepare the Live Migration requirements
 # instances nfs share
 MY_IP=`ifconfig eth0| awk '/inet addr/{print substr($2,6)}'`
@@ -15,14 +21,12 @@ then
     fi
     sudo service nfs-kernel-server restart
 else
-# cleanup_nova() will fail if we mounted the path here, need to do this later after
-# devstack is installed. And the compute node should NOT cleanup the shared directory.
-#    mkdir -p $NFS_PATH
-#    sudo mount -t nfs $CTRL_IP:$NFS_PATH $NFS_PATH
-#    grep $NFS_PATH /etc/fstab
-#    if [ $? -ne 0 ]
-#    then echo "$CTRL_IP:$NFS_PATH $NFS_PATH  nfs defaults 0 0" | sudo -E tee -a /etc/fstab
-#    fi
+    mkdir -p $NFS_PATH
+    sudo mount -t nfs $CTRL_IP:$NFS_PATH $NFS_PATH
+    grep $NFS_PATH /etc/fstab
+    if [ $? -ne 0 ]
+    then echo "$CTRL_IP:$NFS_PATH $NFS_PATH  nfs defaults 0 0" | sudo -E tee -a /etc/fstab
+    fi
 fi
 
 # sshkey

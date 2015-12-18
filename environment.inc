@@ -26,3 +26,5 @@ export INTEL_PROXY=10.240.252.16
 # user sshkey/libvirt/nova-compute/nfs changes
 # export LM_ENABLED="True|False"
 export LM_ENABLED="True"
+
+export TOPDIR=`pwd`

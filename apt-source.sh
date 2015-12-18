@@ -11,3 +11,4 @@ deb http://$LOCAL_APT_SRC/ubuntu/ trusty-updates main universe
 deb http://$LOCAL_APT_SRC/ubuntu/ trusty-security main universe
 EOF
 sudo apt update -y
+sudo apt install -y libvirt-bin
