@@ -17,16 +17,23 @@ then
     mkdir -p $NFS_PATH
     grep $NFS_PATH /etc/exports
     if [ $? -ne 0 ]
-    then echo "$NFS_PATH       *(rw,sync,no_subtree_check)" | sudo -E tee -a /etc/exports
+    then echo "$NFS_PATH       *(rw,sync,no_subtree_check,no_root_squash)" | sudo -E tee -a /etc/exports
     fi
     sudo service nfs-kernel-server restart
 else
     mkdir -p $NFS_PATH
-    sudo mount -t nfs $CTRL_IP:$NFS_PATH $NFS_PATH
     grep $NFS_PATH /etc/fstab
     if [ $? -ne 0 ]
     then echo "$CTRL_IP:$NFS_PATH $NFS_PATH  nfs defaults 0 0" | sudo -E tee -a /etc/fstab
     fi
+    # wait till the nfs directory available
+    for (( c=1; c<10; c++))
+    do
+        sudo mount -t nfs $CTRL_IP:$NFS_PATH $NFS_PATH
+	if [ $? -eq 0 ]
+	    then break
+	fi
+    done
 fi
 
 # sshkey
@@ -35,6 +42,7 @@ fi
 #ssh-keyscan -H 192.168.2.68 >> ~/.ssh/known_hosts
 cp id_rsa.lm ~/.ssh/id_rsa
 chmod 600 ~/.ssh/id_rsa
+sudo cp ~/.ssh/id_rsa /root/.ssh/
 cat id_rsa.lm.pub >> ~/.ssh/authorized_keys
 # echo "    StrictHostKeyChecking no" |sudo -E tee -a /etc/ssh/ssh_config
 # echo "    UserKnownHostsFile=/dev/null" |sudo -E tee -a /etc/ssh/ssh_config

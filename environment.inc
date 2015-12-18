@@ -25,6 +25,6 @@ export INTEL_PROXY=10.240.252.16
 # Flag to tell whether to setup the Live migratioin requirements before run devstack
 # user sshkey/libvirt/nova-compute/nfs changes
 # export LM_ENABLED="True|False"
-export LM_ENABLED="True"
+export LM_ENABLED="False"
 
 export TOPDIR=`pwd`
