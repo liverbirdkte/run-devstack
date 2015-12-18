@@ -29,6 +29,7 @@ else
     # wait till the nfs directory available
     for (( c=1; c<10; c++))
     do
+        echo "Trying $c times"
         sudo mount -t nfs $CTRL_IP:$NFS_PATH $NFS_PATH
 	if [ $? -eq 0 ]
 	    then break
@@ -44,8 +45,8 @@ cp id_rsa.lm ~/.ssh/id_rsa
 chmod 600 ~/.ssh/id_rsa
 sudo cp ~/.ssh/id_rsa /root/.ssh/
 cat id_rsa.lm.pub >> ~/.ssh/authorized_keys
-# echo "    StrictHostKeyChecking no" |sudo -E tee -a /etc/ssh/ssh_config
-# echo "    UserKnownHostsFile=/dev/null" |sudo -E tee -a /etc/ssh/ssh_config
+echo "    StrictHostKeyChecking no" |sudo -E tee -a /etc/ssh/ssh_config
+echo "    UserKnownHostsFile=/dev/null" |sudo -E tee -a /etc/ssh/ssh_config
 
 # libvirt config
 sudo sed -i "s|libvirtd_opts=\"-d\"|libvirtd_opts=\"-l -d\"|" /etc/default/libvirt-bin
