@@ -20,7 +20,7 @@ export PYPI_HOST=shtaurus.sh.intel.com
 # Available intel proxies
 # 10.240.252.16 - proxy-prc
 # 10.239.4.80 - child-prc
-export INTEL_PROXY=10.240.252.16
+export INTEL_PROXY=child-prc.intel.com
 
 # Flag to tell whether to setup the Live migratioin requirements before run devstack
 # user sshkey/libvirt/nova-compute/nfs changes
