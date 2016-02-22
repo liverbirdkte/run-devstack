@@ -8,6 +8,7 @@ set -x
 sudo -E tee /etc/apt/sources.list >>/dev/null << EOF
 deb http://$LOCAL_APT_SRC/ubuntu/ trusty main universe
 deb http://$LOCAL_APT_SRC/ubuntu/ trusty-updates main universe
+deb http://$LOCAL_APT_SRC/ubuntu/ trusty-backports main universe
 deb http://$LOCAL_APT_SRC/ubuntu/ trusty-security main universe
 EOF
 sudo apt update -y
