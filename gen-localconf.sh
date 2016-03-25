@@ -4,6 +4,31 @@ MY_IP=`ifconfig eth0| awk '/inet addr/{print substr($2,6)}'`
 # Generate the local.conf file
 if [ $MY_IP == $CTRL_IP ]; then
 cat > local.conf << EOF
+[[post-config|\$GLANCE_API_CONF]]
+[DEFAULT]
+notification_driver = messaging
+notification_topics = notifications, searchlight_indexer
+rpc_backend = 'rabbit'
+
+[[post-config|\$NOVA_CONF]]
+[DEFAULT]
+notification_driver = messaging
+notification_topics = notifications, searchlight_indexer
+rpc_backend = 'rabbit'
+notify_on_state_change=vm_and_task_state
+
+[[post-config|\$NEUTRON_CONF]]
+[DEFAULT]
+notification_driver = messaging
+notification_topics = notifications, searchlight_indexer
+rpc_backend = 'rabbit'
+
+[[post-config|\$CINDER_CONF]]
+[DEFAULT]
+notification_driver = messaging
+notification_topics = notifications, searchlight_indexer
+rpc_backend = 'rabbit'
+
 [[local|localrc]]
 NOVNC_REPO=/opt/git/kanaka/noVNC.git
 GIT_BASE=/opt/git
@@ -22,14 +47,31 @@ SERVICE_TOKEN=ADMIN
 #FIXED_RANGE=192.168.128.0/24
 MULTI_HOST=True
 
+#for neutron
 disable_service n-net
-disable_service tempest
-disable_service heat
 enable_service q-svc
 enable_service q-agt
 enable_service q-dhcp
 enable_service q-l3
 enable_service q-meta
+enable_service neutron
+disable_service tempest
+
+enable_service heat h-api h-api-cfn h-api-cw h-eng
+enable_service s-proxy s-object s-container s-account
+enable_plugin zaqar https://github.com/openstack/zaqar
+enable_plugin designate https://git.openstack.org/openstack/designate
+
+enable_plugin searchlight https://github.com/openstack/searchlight
+enable_service searchlight-api
+enable_service searchlight-listener
+
+#cinder
+enable_service c-api c-sch c-vol
+VOLUME_GROUP="stack-volumes"
+VOLUME_NAME_PREFIX="volume-"
+VOLUME_BACKING_FILE_SIZE=10250M
+
 enable_service quantum
 enable_service n-novnc
 

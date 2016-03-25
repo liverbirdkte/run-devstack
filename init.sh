@@ -7,6 +7,7 @@ set -x
 ./redsocks.sh
 ./pypi.sh
 ./prep.sh
+./elk.sh
 ./run-devstack.sh
 
 cd $TOPDIR
